@@ -1,0 +1,9 @@
+const test=require('node:test'),assert=require('node:assert/strict'),C=require('../core.js');
+test('eight nights have complete one-to-one assignments',()=>{assert.equal(C.LEVELS.length,8);for(const [i,l] of C.LEVELS.entries()){assert.equal(l.id,i+1);assert.ok(l.guests.length>=2&&l.guests.length<=6);assert.equal(l.rooms.length,l.guests.length);assert.equal(new Set(l.rooms.map(r=>r[0])).size,l.rooms.length);for(const g of l.guests){const r=l.rooms.find(r=>r[0]===g[4]);assert.ok(r);assert.deepEqual(g[3],r[2]);}}});
+test('matching accepts only a guest’s assigned room',()=>{const l=C.LEVELS[0];assert.equal(C.canCheckIn(l,'giraffe','tower',[]),true);assert.equal(C.canCheckIn(l,'giraffe','nook',[]),false);assert.equal(C.canCheckIn(l,'giraffe','tower',['giraffe']),false)});
+test('later nights use paired wishes',()=>{for(const l of C.LEVELS.slice(5))for(const g of l.guests)assert.equal(g[3].length,2)});
+test('nights unlock sequentially',()=>{let m=0;assert.equal(C.isUnlocked(m,1),true);assert.equal(C.isUnlocked(m,2),false);m=C.completeLevel(m,1);assert.equal(C.isUnlocked(m,2),true);assert.equal(C.nextUnlockedLevel(m),2)});
+test('all completion masks round trip',()=>{for(let m=0;m<256;m++){const c=C.encodeProgress(m);assert.match(c,/^SCH1-[0-9A-Z]+-[0-9A-Z]{2}$/);assert.equal(C.decodeProgress(c),m);assert.equal(C.decodeProgress(c.toLowerCase()),m)}});
+test('damaged codes fail validation',()=>{const c=C.encodeProgress(77),z=c.endsWith('Z')?'Y':'Z';assert.equal(C.decodeProgress(c.slice(0,-1)+z),null);assert.equal(C.decodeProgress('hotel'),null)});
+
+test('portable session codes preserve a partly settled hotel',()=>{for(const level of C.LEVELS){const ids=level.guests.slice(0,1).map(v=>v[0]),code=C.encodeSession(255,level.id,ids,1);assert.deepEqual(C.decodeSession(code),{mask:255,level:level.id,ids,mistakes:1});assert.equal(C.decodeSession(code+'x'),null);}});

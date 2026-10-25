@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#174936">
+  <meta name="description" content="Explore illustrated habitats, find animals, and fill your field journal.">
+  <title>Find the Animal · Wild Trails</title>
+  <link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="screen.css?v=4">
+</head>
+<body data-ug-game="find-the-animal">
+<script src="portable-profile.js"></script>
+  <a class="skip-link" href="#mainContent">Skip to game</a>
+  <div class="app-shell" id="appShell">
+    <header class="app-header">
+      <button class="brand button-plain" id="homeButton" type="button" aria-label="Go to home"><span class="brand-mark" aria-hidden="true">✦</span><span><strong>Find the Animal</strong><small>Wild Trails</small></span></button>
+      <div class="header-actions">
+        <button class="icon-button" id="journalButton" type="button" aria-label="Open field journal" title="Field journal">📖</button>
+        <button class="icon-button" id="soundButton" type="button" aria-label="Mute sound" aria-pressed="false" title="Sound">🔊</button>
+        <button class="icon-button" id="settingsButton" type="button" aria-label="Open settings" title="Settings">⚙</button>
+      </div>
+    </header>
+
+    <main id="mainContent" tabindex="-1">
+      <section class="screen home-screen active" id="homeScreen" aria-labelledby="homeTitle">
+        <div class="hero-card">
+          <div class="hero-copy">
+            <p class="eyebrow">A pocket-sized nature adventure</p>
+            <h1 id="homeTitle">Follow the pawprints.<br>Meet the wild.</h1>
+            <p class="hero-text">Search six playful habitats, learn to spot tiny differences, and fill a field journal with animal friends.</p>
+            <div class="hero-actions"><button class="primary-button" id="continueButton" type="button">Begin adventure</button><button class="secondary-button" id="mapButton" type="button">Choose a habitat</button></div>
+            <p class="save-note" id="saveNote">Progress is saved on this device.</p>
+          </div>
+          <div class="hero-art" aria-hidden="true"><span class="hero-sun"></span><span class="hero-hill hill-one"></span><span class="hero-hill hill-two"></span><span class="hero-tree tree-one">♣</span><span class="hero-tree tree-two">♣</span><img class="hero-animal hero-bear" src="assets/round/bear.png" alt=""><img class="hero-animal hero-frog" src="assets/round/frog.png" alt=""><span class="paw-path">•&nbsp;&nbsp; •&nbsp;&nbsp;&nbsp; •</span></div>
+        </div>
+        <div class="mode-grid" aria-label="Ways to play">
+          <button class="mode-card adventure-card" id="adventureCard" type="button"><span class="mode-icon" aria-hidden="true">🧭</span><span><strong>Adventure</strong><small>Explore 48 handcrafted trails</small></span><span aria-hidden="true">→</span></button>
+          <button class="mode-card" id="freePlayButton" type="button"><span class="mode-icon" aria-hidden="true">🍃</span><span><strong>Free play</strong><small>Pick a habitat and difficulty</small></span><span aria-hidden="true">→</span></button>
+          <button class="mode-card" id="dailyButton" type="button"><span class="mode-icon" aria-hidden="true">☀️</span><span><strong>Daily trail</strong><small id="dailyLabel">A fresh search for today</small></span><span aria-hidden="true">→</span></button>
+          <button class="mode-card" id="collectionButton" type="button"><span class="mode-icon" aria-hidden="true">📒</span><span><strong>Field journal</strong><small id="collectionSummary">0 of 30 animals found</small></span><span aria-hidden="true">→</span></button>
+        </div>
+      </section>
+
+      <section class="screen map-screen" id="mapScreen" aria-labelledby="mapTitle">
+        <div class="screen-heading"><button class="back-button" data-back="home" type="button">← Home</button><div><p class="eyebrow">Adventure map</p><h1 id="mapTitle">Choose a habitat</h1></div><p id="mapProgress">0 of 48 trails complete</p></div>
+        <div class="habitat-map" id="habitatMap"></div>
+      </section>
+
+      <section class="screen rounds-screen" id="roundsScreen" aria-labelledby="roundsTitle">
+        <div class="screen-heading"><button class="back-button" data-back="map" type="button">← Map</button><div><p class="eyebrow" id="roundsEyebrow">Habitat</p><h1 id="roundsTitle">Trails</h1></div><p id="roundsProgress"></p></div>
+        <div class="habitat-intro" id="habitatIntro"></div><div class="round-grid" id="roundGrid"></div>
+      </section>
+
+      <section class="screen play-screen" id="playScreen" aria-labelledby="targetText">
+        <div class="play-topbar">
+          <button class="back-button" id="leaveRoundButton" type="button">← Leave</button>
+          <div class="trail-heading"><span id="playHabitatIcon" aria-hidden="true">🌿</span><span><strong id="playHabitat">Farm Meadow</strong><small id="playRound">Trail 1 of 8</small></span></div>
+          <div class="play-stats"><span class="timer hidden" id="timer" aria-label="Elapsed time">0:00</span><span id="findProgress">0 / 1 found</span><button class="icon-button small" id="pauseButton" type="button" aria-label="Pause game">Ⅱ</button></div>
+        </div>
+        <div class="play-layout">
+          <aside class="target-panel" aria-live="polite">
+            <p class="eyebrow" id="targetEyebrow">Your next find</p>
+            <div class="target-portrait-wrap"><span class="target-rays" aria-hidden="true"></span><img id="targetPreview" src="assets/round/owl.png" alt=""></div>
+            <h1 id="targetText">Find the owl</h1><p id="targetClue">Look closely at its big, watchful eyes.</p>
+            <div class="target-tray" id="targetTray" aria-label="Animals to find"></div>
+            <button class="hint-button" id="hintButton" type="button"><span aria-hidden="true">💡</span> Give me a hint</button>
+            <button class="text-button" id="speakButton" type="button"><span aria-hidden="true">◖))</span> Read the clue</button>
+          </aside>
+          <div class="scene-frame">
+            <div class="scene" id="scene" role="group" aria-label="Animal search scene"><div class="scene-backdrop" id="sceneBackdrop" aria-hidden="true"></div><div class="animal-layer" id="animalLayer"></div><div class="hint-region" id="hintRegion" aria-hidden="true"></div><div class="scene-message" id="sceneMessage" aria-live="polite"></div><div class="scene-sparkles" id="sceneSparkles" aria-hidden="true"></div></div>
+            <div class="scene-footer"><span id="ruleLabel">Match the animal in the picture</span><span><kbd>Tab</kbd> moves · <kbd>Enter</kbd> chooses</span></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="screen journal-screen" id="journalScreen" aria-labelledby="journalTitle">
+        <div class="screen-heading"><button class="back-button" data-back="home" type="button">← Home</button><div><p class="eyebrow">Your discoveries</p><h1 id="journalTitle">Field journal</h1></div><p id="journalProgress">0 of 30 discovered</p></div>
+        <div class="journal-toolbar"><p>Every new friend you find gets a page in your journal.</p><div class="filter-pills" id="journalFilters" aria-label="Filter journal"></div></div><div class="journal-grid" id="journalGrid"></div>
+      </section>
+    </main>
+  </div>
+
+  <dialog class="game-dialog" id="resultDialog" aria-labelledby="resultTitle"><div class="dialog-art" id="resultArt" aria-hidden="true">✦</div><p class="eyebrow" id="resultEyebrow">Trail complete</p><h2 id="resultTitle">Brilliant spotting!</h2><p id="resultMessage">You found every animal on this trail.</p><div class="result-animals" id="resultAnimals"></div><div class="result-badges" id="resultBadges"></div><div class="dialog-actions"><button class="secondary-button" id="resultMapButton" type="button">Back to map</button><button class="primary-button" id="nextRoundButton" type="button">Next trail</button></div></dialog>
+  <dialog class="game-dialog compact-dialog" id="pauseDialog" aria-labelledby="pauseTitle"><p class="eyebrow">Take a breather</p><h2 id="pauseTitle">Trail paused</h2><p>Your animals will stay exactly where they are.</p><div class="dialog-actions stacked"><button class="primary-button" id="resumeButton" type="button">Keep searching</button><button class="secondary-button" id="restartButton" type="button">Restart trail</button><button class="text-button" id="pauseLeaveButton" type="button">Leave trail</button></div></dialog>
+  <dialog class="game-dialog settings-dialog" id="settingsDialog" aria-labelledby="settingsTitle"><p class="eyebrow">Make it yours</p><h2 id="settingsTitle">Settings</h2><label class="setting-row"><span><strong>Sound effects</strong><small>Friendly taps, chirps, and celebrations</small></span><input id="soundSetting" type="checkbox"></label><label class="setting-row"><span><strong>Gentle motion</strong><small>Small bounces and sparkle effects</small></span><input id="motionSetting" type="checkbox"></label><label class="setting-row"><span><strong>Offer automatic help</strong><small>Suggest a hint after a quiet moment</small></span><input id="autoHintSetting" type="checkbox"></label><button class="danger-button" id="resetProgressButton" type="button">Reset adventure progress</button><button class="primary-button full-button" id="closeSettingsButton" type="button">Done</button></dialog>
+  <dialog class="game-dialog setup-dialog" id="freePlayDialog" aria-labelledby="freePlayTitle"><p class="eyebrow">Build your own trail</p><h2 id="freePlayTitle">Free play</h2><fieldset><legend>Habitat</legend><div class="choice-grid" id="freeHabitatChoices"></div></fieldset><fieldset><legend>Difficulty</legend><div class="choice-grid three" id="difficultyChoices"><label><input type="radio" name="difficulty" value="easy" checked><span>Easy<small>8 animals</small></span></label><label><input type="radio" name="difficulty" value="medium"><span>Medium<small>14 animals</small></span></label><label><input type="radio" name="difficulty" value="hard"><span>Tricky<small>20 animals</small></span></label></div></fieldset><label class="setting-row"><span><strong>Challenge clock</strong><small>Track time and careful choices</small></span><input id="challengeSetting" type="checkbox"></label><div class="dialog-actions"><button class="secondary-button" id="cancelFreePlayButton" type="button">Cancel</button><button class="primary-button" id="startFreePlayButton" type="button">Start trail</button></div></dialog>
+  <dialog class="game-dialog compact-dialog" id="confirmDialog" aria-labelledby="confirmTitle"><h2 id="confirmTitle">Reset all progress?</h2><p>This clears the field journal, trail stamps, and settings saved on this device.</p><div class="dialog-actions"><button class="secondary-button" id="cancelResetButton" type="button">Keep progress</button><button class="danger-button" id="confirmResetButton" type="button">Reset everything</button></div></dialog>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="game.js"></script>
+<script src="screen.js?v=4"></script>
+</body>
+</html>

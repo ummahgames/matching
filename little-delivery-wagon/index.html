@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f9c85b">
+  <meta name="description" content="Load a little red wagon and match friendly parcels to eight neighborhood delivery routes.">
+  <title>Little Delivery Wagon · Ummah Games</title>
+  <link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="screen.css?v=4">
+<link rel="stylesheet" href="procedural.css">
+</head>
+<body data-ug-game="little-delivery-wagon">
+  <a class="skip-link" href="#main">Skip to game</a>
+  <div class="app-shell">
+    <header class="app-header">
+      <button class="brand plain-button" id="homeButton" type="button" aria-label="Go to the Little Delivery Wagon home screen">
+        <span class="brand-wagon" aria-hidden="true"><span></span></span>
+        <span><strong>Little Delivery Wagon</strong><small>Pack it. Match it. Deliver it.</small></span>
+      </button>
+      <div class="header-actions">
+        <button class="round-button" id="soundButton" type="button" aria-label="Mute sound" aria-pressed="false" title="Sound">♪</button>
+        <button class="round-button" id="saveButton" type="button" aria-label="Open save code" title="Save code">#</button>
+        <button class="round-button" id="helpButton" type="button" aria-label="How to play" title="How to play">?</button>
+      </div>
+    </header>
+
+    <main id="main" tabindex="-1">
+      <section class="screen home-screen active" id="homeScreen" aria-labelledby="homeTitle">
+        <div class="hero">
+          <div class="hero-copy">
+            <p class="eyebrow">A tiny neighborhood adventure</p>
+            <h1 id="homeTitle">Every parcel has<br>a happy <em>home.</em></h1>
+            <p>Load the wagon, follow the picture signs, and help every neighbor get just what they need.</p>
+            <div class="hero-actions">
+              <button class="primary-button" id="continueButton" type="button">Start delivering <span aria-hidden="true">→</span></button>
+              <button class="secondary-button" id="routesButton" type="button">Choose a route</button>
+            </div>
+            <p class="privacy-note"><span aria-hidden="true">♥</span> No ads, accounts, timers, or tracking.</p>
+          </div>
+          <div class="hero-scene" aria-hidden="true">
+            <span class="sun"></span><span class="cloud cloud-one"></span><span class="cloud cloud-two"></span>
+            <span class="hill hill-back"></span><span class="hill hill-front"></span>
+            <span class="hero-house house-a">⌂</span><span class="hero-house house-b">⌂</span>
+            <div class="big-wagon"><span class="wagon-load">🥖&nbsp; 🌱&nbsp; 📚</span><i></i><b></b></div>
+            <span class="road-dash dash-one"></span><span class="road-dash dash-two"></span>
+          </div>
+        </div>
+        <div class="how-strip" aria-label="How the game works">
+          <div><span>1</span><strong>Pick a parcel</strong><small>Tap it or drag it</small></div>
+          <span class="strip-arrow" aria-hidden="true">→</span>
+          <div><span>2</span><strong>Find its picture</strong><small>Look at each sign</small></div>
+          <span class="strip-arrow" aria-hidden="true">→</span>
+          <div><span>3</span><strong>Make the delivery</strong><small>Everyone celebrates</small></div>
+        </div>
+      </section>
+
+      <section class="screen routes-screen" id="routesScreen" aria-labelledby="routesTitle">
+        <div class="screen-heading">
+          <button class="back-button" data-screen="home" type="button">← Home</button>
+          <div><p class="eyebrow">Eight little journeys</p><h1 id="routesTitle">Choose a route</h1></div>
+          <p id="routeProgress">0 of 8 complete</p>
+        </div>
+        <div class="route-grid" id="routeGrid"></div>
+      <section id="generatedSection" class="generated-section" hidden aria-labelledby="generatedTitle">
+          <p class="eyebrow">A fresh little challenge</p><h2 id="generatedTitle">Generated levels</h2><p>Choose any level number. The same number and difficulty make the same puzzle, so you can replay it or share your save code. Each level has its own finish. Stop whenever you like.</p>
+          <form id="generatedForm" class="generated-form"><label for="generatedNumber">Level number<input id="generatedNumber" type="text" inputmode="numeric" pattern="[1-9][0-9]*" maxlength="60" value="1" autocomplete="off" required></label><label for="generatedDifficulty">Challenge<select id="generatedDifficulty"><option value="0">Gentle · 1</option><option value="1">Gentle · 2</option><option value="2">Gentle · 3</option><option value="3" selected>Thoughtful · 1</option><option value="4">Thoughtful · 2</option><option value="5">Thoughtful · 3</option><option value="6">Tricky · 1</option><option value="7">Tricky · 2</option></select></label><button id="generatedStart" type="button" class="primary">Play this level →</button></form><p id="generatedMessage" role="status"></p>
+        </section></section>
+
+      <section class="screen play-screen" id="playScreen" aria-labelledby="levelTitle">
+        <div class="play-topbar">
+          <button class="back-button" id="leaveButton" type="button">← Routes</button>
+          <div class="level-heading"><span id="levelNumber">Route 1 of 8</span><strong id="levelTitle">Morning Bread</strong></div>
+          <div class="delivery-progress" id="deliveryProgress" aria-live="polite">0 of 2 delivered</div>
+        </div>
+        <div class="instruction-card">
+          <div><span class="instruction-icon" id="instructionIcon" aria-hidden="true">👋</span><p><strong id="instructionTitle">Choose a parcel</strong><span id="instructionText">Then match it to the same picture on a building.</span></p></div>
+          <button class="speak-button" id="speakButton" type="button" aria-label="Read the instruction aloud">Read aloud</button>
+        </div>
+        <div class="neighborhood-wrap">
+          <div class="sky-decor" aria-hidden="true"><span class="play-sun"></span><span class="play-cloud cloud-a"></span><span class="play-cloud cloud-b"></span></div>
+          <div class="neighborhood" id="neighborhood" aria-label="Delivery street"></div>
+          <div class="street" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></div>
+        </div>
+        <section class="wagon-tray" aria-labelledby="wagonTitle">
+          <div class="wagon-label"><div class="tiny-wagon" aria-hidden="true"><i></i><b></b></div><div><span>Your wagon</span><strong id="wagonTitle">Choose a parcel</strong></div></div>
+          <div class="parcel-list" id="parcelList" role="group" aria-label="Parcels in the wagon"></div>
+        </section>
+      </section>
+    </main>
+  </div>
+
+  <dialog class="game-dialog result-dialog" id="resultDialog" aria-labelledby="resultTitle">
+    <div class="result-burst" aria-hidden="true">✦</div>
+    <p class="eyebrow">Route complete</p>
+    <h2 id="resultTitle">Every parcel found its home!</h2>
+    <p id="resultMessage">The neighborhood is ready for a lovely morning.</p>
+    <div class="result-sticker" id="resultSticker"><span aria-hidden="true">★</span><strong>Kind courier</strong></div>
+    <div class="dialog-actions"><button class="secondary-button" id="resultRoutesButton" type="button">All routes</button><button class="primary-button" id="nextButton" type="button">Next route →</button></div>
+  <button id="generatedAfterCampaign" type="button" hidden>Try a generated level</button></dialog>
+
+  <dialog class="game-dialog" id="helpDialog" aria-labelledby="helpTitle">
+    <button class="dialog-close" data-close="helpDialog" type="button" aria-label="Close">×</button>
+    <p class="eyebrow">How to play</p><h2 id="helpTitle">Picture matching for little couriers</h2>
+    <ol class="help-steps"><li><span>📦</span><div><strong>Choose a parcel.</strong><p>Tap one, drag one, or use Tab and Enter.</p></div></li><li><span>🏠</span><div><strong>Find the matching sign.</strong><p>Every building shows the parcel it needs.</p></div></li><li><span>♥</span><div><strong>Deliver them all.</strong><p>There is no clock and a mix-up never costs anything.</p></div></li></ol>
+    <button class="primary-button full-button" data-close="helpDialog" type="button">Let’s deliver</button>
+  </dialog>
+
+  <dialog class="game-dialog save-dialog" id="saveDialog" aria-labelledby="saveTitle">
+    <button class="dialog-close" data-close="saveDialog" type="button" aria-label="Close">×</button>
+    <p class="eyebrow">Portable progress</p><h2 id="saveTitle">Your delivery code</h2>
+    <p>This short code remembers completed routes. Keep it somewhere safe or copy the page link.</p>
+    <label for="saveCode">Save code</label><div class="code-row"><input id="saveCode" type="text" autocomplete="off" spellcheck="false"><button id="copyCodeButton" type="button">Copy</button></div>
+    <div class="dialog-actions"><button class="secondary-button" id="loadCodeButton" type="button">Load code</button><button class="primary-button" id="copyLinkButton" type="button">Copy game link</button></div>
+    <p class="code-status" id="codeStatus" role="status" aria-live="polite"></p>
+  </dialog>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="core.js"></script>
+  <script src="procedural.js"></script><script src="procedural-ui.js"></script><script src="game.js"></script>
+<script src="screen.js?v=4"></script>
+</body>
+</html>
