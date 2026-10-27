@@ -2,7 +2,7 @@
 
 Picture matching, memory, listening, and gentle discovery.
 
-**5 games.** Each folder contains a complete standalone browser game.
+**4 games.** Each folder contains a complete standalone browser game.
 
 | Game | Folder | Public route |
 | --- | --- | --- |
@@ -10,7 +10,6 @@ Picture matching, memory, listening, and gentle discovery.
 | [Little Delivery Wagon](little-delivery-wagon/index.html) | [little-delivery-wagon/](little-delivery-wagon/README.md) | /matching/little-delivery-wagon/ |
 | [Picnic Pairs](picnic-pairs/index.html) | [picnic-pairs/](picnic-pairs/README.md) | /matching/picnic-pairs/ |
 | [Sleepy Creature Hotel](sleepy-creature-hotel/index.html) | [sleepy-creature-hotel/](sleepy-creature-hotel/README.md) | /matching/sleepy-creature-hotel/ |
-| [Who Made That Sound?](who-made-that-sound/index.html) | [who-made-that-sound/](who-made-that-sound/README.md) | /matching/who-made-that-sound/ |
 
 ## Hosting
 
