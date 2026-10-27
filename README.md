@@ -6,11 +6,11 @@ Picture matching, memory, listening, and gentle discovery.
 
 | Game | Folder | Public route |
 | --- | --- | --- |
-| [Find the Animal](find-the-animal/index.html) | [find-the-animal/](find-the-animal/README.md) | /find-the-animal/ |
-| [Little Delivery Wagon](little-delivery-wagon/index.html) | [little-delivery-wagon/](little-delivery-wagon/README.md) | /little-delivery-wagon/ |
-| [Picnic Pairs](picnic-pairs/index.html) | [picnic-pairs/](picnic-pairs/README.md) | /picnic-pairs/ |
-| [Sleepy Creature Hotel](sleepy-creature-hotel/index.html) | [sleepy-creature-hotel/](sleepy-creature-hotel/README.md) | /sleepy-creature-hotel/ |
-| [Who Made That Sound?](who-made-that-sound/index.html) | [who-made-that-sound/](who-made-that-sound/README.md) | /who-made-that-sound/ |
+| [Find the Animal](find-the-animal/index.html) | [find-the-animal/](find-the-animal/README.md) | /matching/find-the-animal/ |
+| [Little Delivery Wagon](little-delivery-wagon/index.html) | [little-delivery-wagon/](little-delivery-wagon/README.md) | /matching/little-delivery-wagon/ |
+| [Picnic Pairs](picnic-pairs/index.html) | [picnic-pairs/](picnic-pairs/README.md) | /matching/picnic-pairs/ |
+| [Sleepy Creature Hotel](sleepy-creature-hotel/index.html) | [sleepy-creature-hotel/](sleepy-creature-hotel/README.md) | /matching/sleepy-creature-hotel/ |
+| [Who Made That Sound?](who-made-that-sound/index.html) | [who-made-that-sound/](who-made-that-sound/README.md) | /matching/who-made-that-sound/ |
 
 ## Hosting
 
