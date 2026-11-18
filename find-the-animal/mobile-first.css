@@ -37,3 +37,15 @@
   .scene-footer > span:last-child { display: none; }
   .play-stats .icon-button.small { width: 44px; height: 44px; }
 }
+
+/* Edge-to-edge game presentation, on phones and larger screens. */
+
+body[data-ug-game] .app-shell { width:100%; max-width:none; padding:0; }
+body[data-ug-game] .app-header { padding:4px max(8px,env(safe-area-inset-right)) 4px max(8px,env(safe-area-inset-left)); }
+body[data-ug-game] .hero-card, body[data-ug-game] .scene-frame, body[data-ug-game] .target-panel { border:0; border-radius:0; box-shadow:none; }
+body[data-ug-game] .hero-card { min-height:calc(100dvh - 64px); display:flex; justify-content:center; }
+body[data-ug-game] .hero-art { display:none; }
+body[data-ug-game]:has(#playScreen.active) .app-header { display:none; }
+body[data-ug-game] .play-screen { padding:max(4px,env(safe-area-inset-top)) max(4px,env(safe-area-inset-right)) max(4px,env(safe-area-inset-bottom)) max(4px,env(safe-area-inset-left)); }
+body[data-ug-game] .play-layout { height:calc(100dvh - 66px); min-height:0; gap:0; }
+body[data-ug-game] .scene-frame { flex:1; min-height:0; }
